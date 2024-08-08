@@ -4,12 +4,19 @@
  */
 package Reparaciones;
 
+import GestionReparaciones.GestionReparacion;
+import Mecanicos.Mecanico;
+import Vehiculos.Vehiculo;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author Dering
  */
 public class FrmReparacion extends javax.swing.JInternalFrame {
-
+    private GestionReparacion inventario;
     /**
      * Creates new form FrmReparacion
      */
@@ -47,6 +54,8 @@ public class FrmReparacion extends javax.swing.JInternalFrame {
         BtnMostrar = new javax.swing.JButton();
         BtnEditar = new javax.swing.JButton();
         BtnEliminar = new javax.swing.JButton();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        TxtMostrar = new javax.swing.JTextArea();
 
         jPanel1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
@@ -85,7 +94,7 @@ public class FrmReparacion extends javax.swing.JInternalFrame {
         jLabel7.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         jLabel7.setText("Estado:   ");
 
-        CbEstado.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Elegir", "Mantenimiento", "Procesando", "Terminado" }));
+        CbEstado.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Elegir", "M", "P", "T" }));
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -174,9 +183,14 @@ public class FrmReparacion extends javax.swing.JInternalFrame {
 
         BtnEditar.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         BtnEditar.setText("Editar");
+        BtnEditar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BtnEditarActionPerformed(evt);
+            }
+        });
 
         BtnEliminar.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        BtnEliminar.setText("Eliminar");
+        BtnEliminar.setText("Atender");
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
@@ -185,13 +199,13 @@ public class FrmReparacion extends javax.swing.JInternalFrame {
             .addGroup(jPanel3Layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(BtnNuevo, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(46, 46, 46)
+                .addGap(37, 37, 37)
                 .addComponent(BtnAgregar, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 48, Short.MAX_VALUE)
+                .addGap(51, 51, 51)
                 .addComponent(BtnMostrar, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(43, 43, 43)
+                .addGap(38, 38, 38)
                 .addComponent(BtnEditar, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(39, 39, 39)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 50, Short.MAX_VALUE)
                 .addComponent(BtnEliminar, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
@@ -208,16 +222,21 @@ public class FrmReparacion extends javax.swing.JInternalFrame {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
+        TxtMostrar.setColumns(20);
+        TxtMostrar.setRows(5);
+        jScrollPane1.setViewportView(TxtMostrar);
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addGroup(layout.createSequentialGroup()
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jScrollPane1)
+                    .addComponent(jPanel2, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jPanel3, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -228,7 +247,9 @@ public class FrmReparacion extends javax.swing.JInternalFrame {
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 111, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 169, Short.MAX_VALUE)
+                .addContainerGap())
         );
 
         pack();
@@ -236,23 +257,47 @@ public class FrmReparacion extends javax.swing.JInternalFrame {
 
     private void BtnNuevoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnNuevoActionPerformed
         this.TxtID.setEditable(true);
-        this.TxtNombre.setEditable(true);
-        this.CbEspecialidad.setEditable(true);
+        this.TxtVehiculo.setEditable(true);
+        this.TxtMecanico.setEditable(true);
+        this.TxtFecha.setEditable(true);
+        this.TxtDescripcion.setEditable(true);
+        this.CbEstado.setEditable(true);
     }//GEN-LAST:event_BtnNuevoActionPerformed
 
     private void BtnAgregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnAgregarActionPerformed
         int codigo = Integer.parseInt(TxtID.getText());
-        String nombre = TxtNombre.getText();
-        String especialidad = (String) CbEspecialidad.getSelectedItem();
-
+        String marca = TxtVehiculo.getText();
+        Vehiculo vehiculo = new Vehiculo(marca, "", "", 0);
+        String nombre = TxtMecanico.getText();
+        Mecanico mecanico = new Mecanico(0, nombre, "");
+        LocalDate fecha = LocalDate.parse(TxtFecha.getText(), DateTimeFormatter.ofPattern("dd/MM/yyyy"));
+        String descripcion = TxtDescripcion.getText();
+        char estado = ((String) CbEstado.getSelectedItem()).charAt(0);
+        if (inventario.estaVacia()) {
+            JOptionPane.showMessageDialog(this, "La cola está vacía.");
+        } else {
+            JOptionPane.showMessageDialog(this, "Hay elementos en la cola.");
+        }
+        Reparacion repar = new Reparacion(codigo, vehiculo, mecanico, fecha, descripcion, estado);
+        inventario.agregarReparacion(repar);
         TxtID.setText("");
-        TxtNombre.setText("");
-        CbEspecialidad.setSelectedItem("Elegir");
+        TxtVehiculo.setText("");
+        TxtMecanico.setText("");
+        TxtFecha.setText("");
+        TxtDescripcion.setText("");
+        CbEstado.setSelectedItem("Elegir");
     }//GEN-LAST:event_BtnAgregarActionPerformed
 
     private void BtnMostrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnMostrarActionPerformed
+        GestionReparacion gestionReparacion = new GestionReparacion(); 
+        String reparacionesStr = gestionReparacion.listarReparacion();
 
+        TxtMostrar.setText(reparacionesStr);
     }//GEN-LAST:event_BtnMostrarActionPerformed
+
+    private void BtnEditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnEditarActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_BtnEditarActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -266,6 +311,7 @@ public class FrmReparacion extends javax.swing.JInternalFrame {
     private javax.swing.JTextField TxtFecha;
     private javax.swing.JTextField TxtID;
     private javax.swing.JTextField TxtMecanico;
+    private javax.swing.JTextArea TxtMostrar;
     private javax.swing.JTextField TxtVehiculo;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
@@ -277,5 +323,6 @@ public class FrmReparacion extends javax.swing.JInternalFrame {
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
+    private javax.swing.JScrollPane jScrollPane1;
     // End of variables declaration//GEN-END:variables
 }
