@@ -15,7 +15,7 @@ public class Vehiculo {
     private String modelo;
     private String marca;
     private int añoFabriacion;
-    private static ArrayList<Vehiculo> listaVehiculos;
+    
 
     public String getMatricula() {
         return matricula;
@@ -54,22 +54,15 @@ public class Vehiculo {
         this.modelo = modelo;
         this.marca = marca;
         this.añoFabriacion = añoFabriacion;
+        
     }
+
 
     public Vehiculo() {
         this("","","",0);
     }
     
-    public static void agregarVehiculo(Vehiculo vehiculo) {
-        listaVehiculos.add(vehiculo);
-    }
-
-    public static void imprimirListaVehiculos() {
-        System.out.println("Lista de Vehículos:");
-        for (Vehiculo vehiculo : listaVehiculos) {
-            System.out.println(vehiculo.toString());
-        }
-    }
+    
 
     @Override
     public String toString() {
