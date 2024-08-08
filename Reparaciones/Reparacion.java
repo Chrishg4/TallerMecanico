@@ -8,10 +8,7 @@ import Mecanicos.Mecanico;
 import Vehiculos.Vehiculo;
 import java.time.LocalDate;
 
-/**
- *
- * @author dashs
- */
+
 public class Reparacion {
     private int id;
     private Vehiculo vehiculo;
@@ -19,7 +16,7 @@ public class Reparacion {
     private LocalDate fecha;
     private String descripcion;
     private char estado;
-    public static final char MANT='M', TERMI='T';
+    public static final char MANT='M', TERMI='T', PROC='P';
 
     public int getId() {
         return id;
@@ -45,13 +42,14 @@ public class Reparacion {
         return switch (estado) {
             case MANT -> "Mantenimiento";
             case TERMI -> "Terminada";
+            case PROC -> "Procesando";
             default -> "Estado no reconocido";
         };
     }
 
     public void setEstado(char estado) {
         estado=Character.toUpperCase(estado);
-        if (estado=='M'||estado=='A'||estado=='D'){
+        if (estado=='M'||estado=='A'||estado=='P' ||estado=='D'){
         this.estado=estado;
         }
     }
@@ -74,6 +72,4 @@ public class Reparacion {
         return "Reparacion{" + "id=" + id + ", vehiculo=" + vehiculo + ", mecanico=" + mecanico 
                 + ", fecha=" + fecha + ", descripcion=" + descripcion + ", estado=" + estado + '}';
     }
-    
-    
 }
