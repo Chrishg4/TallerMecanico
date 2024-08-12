@@ -4,24 +4,23 @@
  */
 package Reparaciones;
 
-import GestionReparaciones.GestionReparacion;
+import HistorialReparaciones.HistorialReparacion;
 import Mecanicos.Mecanico;
 import Vehiculos.Vehiculo;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
-import javax.swing.JOptionPane;
+import java.util.Iterator;
+import java.util.Stack;
+import javax.swing.table.DefaultTableModel;
 
-/**
- *
- * @author Dering
- */
 public class FrmReparacion extends javax.swing.JInternalFrame {
-    private GestionReparacion inventario;
+    private HistorialReparacion inventario;
     /**
      * Creates new form FrmReparacion
      */
     public FrmReparacion() {
         initComponents();
+        inventario = new HistorialReparacion();
     }
 
     /**
@@ -33,6 +32,10 @@ public class FrmReparacion extends javax.swing.JInternalFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jScrollPane2 = new javax.swing.JScrollPane();
+        jTable1 = new javax.swing.JTable();
+        jScrollPane3 = new javax.swing.JScrollPane();
+        jTable2 = new javax.swing.JTable();
         jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         jPanel2 = new javax.swing.JPanel();
@@ -54,8 +57,36 @@ public class FrmReparacion extends javax.swing.JInternalFrame {
         BtnMostrar = new javax.swing.JButton();
         BtnEditar = new javax.swing.JButton();
         BtnEliminar = new javax.swing.JButton();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        TxtMostrar = new javax.swing.JTextArea();
+        jScrollPane4 = new javax.swing.JScrollPane();
+        TxtMostrar = new javax.swing.JTable();
+
+        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
+            },
+            new String [] {
+                "Title 1", "Title 2", "Title 3", "Title 4"
+            }
+        ));
+        jScrollPane2.setViewportView(jTable1);
+
+        jTable2.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
+            },
+            new String [] {
+                "Title 1", "Title 2", "Title 3", "Title 4"
+            }
+        ));
+        jScrollPane3.setViewportView(jTable2);
+
+        setClosable(true);
 
         jPanel1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
@@ -80,16 +111,26 @@ public class FrmReparacion extends javax.swing.JInternalFrame {
         jLabel2.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         jLabel2.setText("Codigo:   ");
 
+        TxtID.setEditable(false);
+
         jLabel3.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         jLabel3.setText("Vehiculo:   ");
+
+        TxtVehiculo.setEditable(false);
 
         jLabel4.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         jLabel4.setText("Mecanico:   ");
 
+        TxtMecanico.setEditable(false);
+
         jLabel5.setText("Fecha:   ");
+
+        TxtFecha.setEditable(false);
 
         jLabel6.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         jLabel6.setText("Descripción:   ");
+
+        TxtDescripcion.setEditable(false);
 
         jLabel7.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         jLabel7.setText("Estado:   ");
@@ -106,15 +147,15 @@ public class FrmReparacion extends javax.swing.JInternalFrame {
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addComponent(jLabel2)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(TxtID, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
+                        .addComponent(TxtID, javax.swing.GroupLayout.PREFERRED_SIZE, 88, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jLabel3)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(TxtVehiculo, javax.swing.GroupLayout.PREFERRED_SIZE, 143, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jLabel4)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(TxtMecanico))
+                        .addComponent(TxtMecanico, javax.swing.GroupLayout.DEFAULT_SIZE, 216, Short.MAX_VALUE))
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                             .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel2Layout.createSequentialGroup()
@@ -222,21 +263,38 @@ public class FrmReparacion extends javax.swing.JInternalFrame {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-        TxtMostrar.setColumns(20);
-        TxtMostrar.setRows(5);
-        jScrollPane1.setViewportView(TxtMostrar);
+        TxtMostrar.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null}
+            },
+            new String [] {
+                "Codigo", "Vehiculo", "Mecanico", "Fecha", "Descripcion", "Estado"
+            }
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false, false, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        jScrollPane4.setViewportView(TxtMostrar);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+            .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jScrollPane1)
-                    .addComponent(jPanel2, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jPanel3, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jScrollPane4))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -248,8 +306,8 @@ public class FrmReparacion extends javax.swing.JInternalFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 169, Short.MAX_VALUE)
-                .addContainerGap())
+                .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         pack();
@@ -267,17 +325,12 @@ public class FrmReparacion extends javax.swing.JInternalFrame {
     private void BtnAgregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnAgregarActionPerformed
         int codigo = Integer.parseInt(TxtID.getText());
         String marca = TxtVehiculo.getText();
-        Vehiculo vehiculo = new Vehiculo(marca, "", "", 0);
+        Vehiculo vehiculo = new Vehiculo("", "", marca, 0);
         String nombre = TxtMecanico.getText();
         Mecanico mecanico = new Mecanico(0, nombre, "");
         LocalDate fecha = LocalDate.parse(TxtFecha.getText(), DateTimeFormatter.ofPattern("dd/MM/yyyy"));
         String descripcion = TxtDescripcion.getText();
         char estado = ((String) CbEstado.getSelectedItem()).charAt(0);
-        if (inventario.estaVacia()) {
-            JOptionPane.showMessageDialog(this, "La cola está vacía.");
-        } else {
-            JOptionPane.showMessageDialog(this, "Hay elementos en la cola.");
-        }
         Reparacion repar = new Reparacion(codigo, vehiculo, mecanico, fecha, descripcion, estado);
         inventario.agregarReparacion(repar);
         TxtID.setText("");
@@ -289,10 +342,25 @@ public class FrmReparacion extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_BtnAgregarActionPerformed
 
     private void BtnMostrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnMostrarActionPerformed
-        GestionReparacion gestionReparacion = new GestionReparacion(); 
-        String reparacionesStr = gestionReparacion.listarReparacion();
-
-        TxtMostrar.setText(reparacionesStr);
+        DefaultTableModel tableModel = new DefaultTableModel();
+        tableModel.addColumn("Codigo");
+        tableModel.addColumn("Vehiculo");
+        tableModel.addColumn("Mecanico");
+        tableModel.addColumn("Fecha");
+        tableModel.addColumn("Descripcion");
+        tableModel.addColumn("Estado");
+        for (Reparacion r : inventario.listarHistorial()) {
+            tableModel.addRow(new Object[] {
+                r.getId(),
+                r.getVehiculo().getMarca(),
+                r.getMecanico().getNombre(),
+                r.getFecha(),
+                r.getDescripcion(),
+                r.getEstado()
+            });
+        }
+        TxtMostrar.setModel(tableModel);
+        TxtMostrar.setVisible(true);
     }//GEN-LAST:event_BtnMostrarActionPerformed
 
     private void BtnEditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnEditarActionPerformed
@@ -311,7 +379,7 @@ public class FrmReparacion extends javax.swing.JInternalFrame {
     private javax.swing.JTextField TxtFecha;
     private javax.swing.JTextField TxtID;
     private javax.swing.JTextField TxtMecanico;
-    private javax.swing.JTextArea TxtMostrar;
+    private javax.swing.JTable TxtMostrar;
     private javax.swing.JTextField TxtVehiculo;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
@@ -323,6 +391,10 @@ public class FrmReparacion extends javax.swing.JInternalFrame {
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
-    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JScrollPane jScrollPane3;
+    private javax.swing.JScrollPane jScrollPane4;
+    private javax.swing.JTable jTable1;
+    private javax.swing.JTable jTable2;
     // End of variables declaration//GEN-END:variables
 }

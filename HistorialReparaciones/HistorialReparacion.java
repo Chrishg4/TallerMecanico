@@ -11,14 +11,14 @@ import java.util.Stack;
  * @author dashs
  */
 public class HistorialReparacion {
-    private Stack<Reparacion> historial;
+    private final Stack<Reparacion> historial;
 
     public HistorialReparacion() {
         this.historial = new Stack<>();
     }
     
     public void agregarReparacion(Reparacion reparacion) {
-        historial.push(reparacion);
+        historial.add(reparacion);
     }
 
     public Reparacion deshacerReparacion() {
@@ -39,12 +39,7 @@ public class HistorialReparacion {
         return historial.isEmpty();
     }
     
-    public String listarHistorial() {
-        StringBuilder sb = new StringBuilder();
-        for (Reparacion reparacion : historial) {
-            sb.append(reparacion.toString()).append("\n");
-        }
-        return sb.toString();
+    public Stack<Reparacion> listarHistorial() {
+        return historial;
     }
-    
 }

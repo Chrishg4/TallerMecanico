@@ -38,6 +38,26 @@ public class Reparacion {
         return descripcion;
     }
 
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public void setVehiculo(Vehiculo vehiculo) {
+        this.vehiculo = vehiculo;
+    }
+
+    public void setMecanico(Mecanico mecanico) {
+        this.mecanico = mecanico;
+    }
+
+    public void setFecha(LocalDate fecha) {
+        this.fecha = fecha;
+    }
+
+    public void setDescripcion(String descripcion) {
+        this.descripcion = descripcion;
+    }
+
     public String getEstado() {
         return switch (estado) {
             case MANT -> "Mantenimiento";

@@ -114,22 +114,14 @@ public class FrmVehiculos extends javax.swing.JInternalFrame {
         jLabel2.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         jLabel2.setText("Matricula:");
 
-        TxtMatricula.setEditable(false);
-
         jLabel3.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         jLabel3.setText("Modelo:   ");
-
-        TxtModelo.setEditable(false);
 
         jLabel4.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         jLabel4.setText("Marca:   ");
 
-        TxtMarca.setEditable(false);
-
         jLabel5.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         jLabel5.setText("Año de fabricacion:   ");
-
-        TxtAño.setEditable(false);
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -248,9 +240,8 @@ public class FrmVehiculos extends javax.swing.JInternalFrame {
         String matricula = TxtMatricula.getText();
         String modelo = TxtModelo.getText();
         String marca = TxtMarca.getText();
-        int añoFabricacion = Integer.parseInt(TxtAño.getText());
-        Vehiculo vehiculo = new Vehiculo(matricula, modelo, marca, añoFabricacion);
-
+        int annioFabricacion = Integer.parseInt(TxtAño.getText());
+        Vehiculo vehiculo = new Vehiculo(matricula, modelo, marca, annioFabricacion);
         this.vehiculo.agregarVehiculo(vehiculo);
         TxtMatricula.setText("");
         TxtModelo.setText("");

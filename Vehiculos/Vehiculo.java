@@ -64,6 +64,4 @@ public class Vehiculo {
     public String toString() {
         return "Vehiculo{" + "matricula=" + matricula + ", modelo=" + modelo + ", marca=" + marca + ", a\u00f1oFabriacion=" + annioFabriacion + '}';
     }
-    
-    
 }

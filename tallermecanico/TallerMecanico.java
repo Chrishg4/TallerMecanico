@@ -4,17 +4,14 @@
  */
 package tallermecanico;
 
-/**
- *
- * @author chris
- */
+
 public class TallerMecanico {
 
     /**
      * @param args the command line arguments
      */
+
     public static void main(String[] args) {
-        // TODO code application logic here
+        
     }
-    
 }
