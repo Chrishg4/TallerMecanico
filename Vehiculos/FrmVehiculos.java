@@ -237,7 +237,7 @@ public class FrmVehiculos extends javax.swing.JInternalFrame {
                 vehiculo.getMatricula(),
                 vehiculo.getModelo(),
                 vehiculo.getMarca(),
-                vehiculo.getAñoFabricacion()
+                vehiculo.getAnnioFabriacion()
             };
             modelo.addRow(fila);
         }
