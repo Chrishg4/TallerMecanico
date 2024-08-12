@@ -4,10 +4,6 @@
  */
 package Mecanicos;
 
-import java.util.HashSet;
-
-
-
 /**
  *
  * @author krist
@@ -42,16 +38,10 @@ public class Mecanico {
     public Mecanico() {
         this(0,"","");
     }
-    
-    public static boolean registrarMecanico(HashSet<Mecanico> mecanicos, Mecanico nuevoMecanico) {
-        return mecanicos.add(nuevoMecanico); 
-    }
   
     @Override
     public String toString() {
         return "Mecanico{" + "id=" + id + ", nombre=" + nombre + ", especialidad=" + especialidad + '}';
     }
-    
-    
     
 }
