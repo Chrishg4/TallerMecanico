@@ -55,8 +55,6 @@ public class FrmReparacion extends javax.swing.JInternalFrame {
         BtnNuevo = new javax.swing.JButton();
         BtnAgregar = new javax.swing.JButton();
         BtnMostrar = new javax.swing.JButton();
-        BtnEditar = new javax.swing.JButton();
-        BtnEliminar = new javax.swing.JButton();
         jScrollPane4 = new javax.swing.JScrollPane();
         TxtMostrar = new javax.swing.JTable();
 
@@ -222,17 +220,6 @@ public class FrmReparacion extends javax.swing.JInternalFrame {
             }
         });
 
-        BtnEditar.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        BtnEditar.setText("Editar");
-        BtnEditar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                BtnEditarActionPerformed(evt);
-            }
-        });
-
-        BtnEliminar.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        BtnEliminar.setText("Atender");
-
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
         jPanel3Layout.setHorizontalGroup(
@@ -240,14 +227,10 @@ public class FrmReparacion extends javax.swing.JInternalFrame {
             .addGroup(jPanel3Layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(BtnNuevo, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(37, 37, 37)
+                .addGap(186, 186, 186)
                 .addComponent(BtnAgregar, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(51, 51, 51)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(BtnMostrar, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(38, 38, 38)
-                .addComponent(BtnEditar, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 50, Short.MAX_VALUE)
-                .addComponent(BtnEliminar, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
         jPanel3Layout.setVerticalGroup(
@@ -257,9 +240,7 @@ public class FrmReparacion extends javax.swing.JInternalFrame {
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(BtnNuevo)
                     .addComponent(BtnAgregar)
-                    .addComponent(BtnMostrar)
-                    .addComponent(BtnEditar)
-                    .addComponent(BtnEliminar))
+                    .addComponent(BtnMostrar))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -363,15 +344,9 @@ public class FrmReparacion extends javax.swing.JInternalFrame {
         TxtMostrar.setVisible(true);
     }//GEN-LAST:event_BtnMostrarActionPerformed
 
-    private void BtnEditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnEditarActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_BtnEditarActionPerformed
-
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton BtnAgregar;
-    private javax.swing.JButton BtnEditar;
-    private javax.swing.JButton BtnEliminar;
     private javax.swing.JButton BtnMostrar;
     private javax.swing.JButton BtnNuevo;
     private javax.swing.JComboBox<String> CbEstado;
