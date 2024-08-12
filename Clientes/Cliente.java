@@ -4,10 +4,6 @@
  */
 package Clientes;
 
-import Vehiculos.Vehiculo;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
 
 /**
  *
@@ -18,7 +14,6 @@ public class Cliente {
     private String nombre;
     private String telefono; 
     private String direccion; 
-    private HashMap<Cliente, List<Vehiculo>> relacionesClientesVehiculos;
 
     public int getId() {
         return id;
@@ -44,36 +39,20 @@ public class Cliente {
         this.direccion = direccion;
     }
 
-    public Cliente(int id, String nombre, String telefono, String direccion, HashMap<Cliente, List<Vehiculo>> relacionesClientesVehiculos) {
+    public Cliente(int id, String nombre, String telefono, String direccion) {
         this.id = id;
         this.nombre = nombre;
         this.telefono = telefono;
         this.direccion = direccion;
-        this.relacionesClientesVehiculos = new HashMap<>();
     }
 
     public Cliente(){
-        this(0, "", "", "",new HashMap<>());
+        this(0, "", "", "");
     }
     
     @Override
     public String toString() {
         return "Cliente{" + "id=" + id + ", nombre=" + nombre + ", telefono=" + telefono + ", direccion=" + direccion + '}';
     }
-    
-    public void AgregarVehiculo(Cliente cliente, Vehiculo vehiculo){
-        List<Vehiculo> vehiculos = relacionesClientesVehiculos.get(cliente);
-         if (vehiculos == null){
-              vehiculos = new ArrayList<>();
-            vehiculos.add(vehiculo);
-            relacionesClientesVehiculos.put(cliente, vehiculos);
-        } else{
-              vehiculos.add(vehiculo);
-         }
-    }
-     public List<Vehiculo> obtenerVehiculos(Cliente cliente) {
-        return relacionesClientesVehiculos.get(cliente);
-    }
- 
     
 }
